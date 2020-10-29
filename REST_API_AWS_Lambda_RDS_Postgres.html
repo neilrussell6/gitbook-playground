@@ -1,0 +1,528 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>REST API AWS Lambda RDS Postgres · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    NoNa Playground Showcase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="REST_API_AWS_Lambda_RDS_Postgres.html">
+            
+                <a href="REST_API_AWS_Lambda_RDS_Postgres.html">
+            
+                    
+                    REST API AWS Lambda RDS Postgres
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >REST API AWS Lambda RDS Postgres</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="crud-rest-api-with-lambda-rds-postgres-vpc-and-logging">CRUD REST API with Lambda, RDS (Postgres), VPC and logging</h1>
+<blockquote>
+<p>This demonstrates a full CRUD REST API implementation with Postgres/RDS, VPC and logging</p>
+</blockquote>
+<p>including:</p>
+<h5 id="rest-api">REST API</h5>
+<ul>
+<li>CRUD (feature module specific)</li>
+<li>PG Promise</li>
+<li>DB Migrations</li>
+<li>Transactional Internal Integration testing with Docker</li>
+<li>Factories/Fixtures</li>
+</ul>
+<h5 id="local-api--db-delivery">local API / DB delivery</h5>
+<ul>
+<li>Docker</li>
+<li>Express</li>
+<li>Postgres</li>
+</ul>
+<h5 id="aws-api-delivery">AWS API delivery</h5>
+<p>using AWS CDK, including:</p>
+<ul>
+<li>VPC</li>
+<li>RDS</li>
+<li>Lambda (Custom asset bundling with Webpack, and external SQL files)</li>
+</ul>
+<h5 id="aws-config-management">AWS Config Management</h5>
+<p>using AWS CDK, including support for:</p>
+<ul>
+<li>Paramstore</li>
+<li>Secrets Manager</li>
+<li>Local Static Config</li>
+</ul>
+<h5 id="logging">Logging</h5>
+<p>Using a custom Winston Logger, including:</p>
+<ul>
+<li>AWS Cloudwatch Transport</li>
+<li>Console Transport (for local logging)</li>
+</ul>
+<h3 id="related">Related</h3>
+<ul>
+<li><a href="int__api__rest--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__config--aws__cdk__cognito__custom__passwordless_email__admin">REST API / AWS CDK (Lambda / Config / Cognito Passwordless Email Auth with Admin only user creation)</a></li>
+</ul>
+<h3 id="composition">Composition</h3>
+<p>This integration branch is composed of the following isolation branches:</p>
+<ul>
+<li><a href="api__rest__crud__postgresql__pg_promise">REST API (CRUD) / PostgreSQL (PG Promise)</a></li>
+<li><a href="iso__aws__cdk__api_gateway__lambda__code_asset__webpack">AWS CDK (API Gateway + Lambdas + webpack code bundling)</a></li>
+<li><a href="iso__aws__cdk__config">AWS CDK (Config)</a></li>
+<li><a href="iso__aws__cdk__vpc">AWS CDK (VPC)</a></li>
+<li><a href="iso__aws__cdk__rds">AWS CDK (RDS)</a></li>
+<li><a href="iso__logging__winston__cloudwatch">Logging Winston (Cloudwatch)</a></li>
+</ul>
+<h2 id="design">Design</h2>
+<h3 id="books-api-aws-cdk-package"><code>books-api-aws-cdk</code> package</h3>
+<h5 id="summary">summary</h5>
+<ul>
+<li>creates VPC, RDS and Lambda REST API stacks
+using their respective packages
+and through a common <code>BooksAPI</code> Construct</li>
+</ul>
+<h5 id="details">details</h5>
+<ul>
+<li>imports VPC, RDS and Lambda REST API stacks from their respective packages</li>
+<li>creates the Books API App and Lambda REST API stack (but does not yet create the actual lambdas)</li>
+<li>creates the VPC stack</li>
+<li>creates the RDS stack (providing it with required VPC settings/data)</li>
+<li>then creates the Lambdas on Books API App (providing it with required VPC settings/data)</li>
+</ul>
+<h2 id="code">Code</h2>
+<h3 id="books-api-package"><code>books-api</code> package</h3>
+<blockquote>
+<p>Contains all the API code (DB interaction, request/response handlers, business logic etc) for the Books API,
+but is platform agnostic, so knows nothing about AWS or express or wherever it&apos;s going to be &quot;served&quot;.</p>
+</blockquote>
+<pre><code class="lang-text">+-- data
+    +-- migrations
++-- src
+    +-- common
+        +-- data
+        +-- http-response
+        +-- logging
+        +-- postgres
+    +-- modules
+        +-- books
+            +-- business
+            +-- data
+            +-- persistence
+            +-- presentation
+</code></pre>
+<h3 id="books-api-aws-cdk-package"><code>books-api-aws-cdk</code> package</h3>
+<blockquote>
+<p>Deploys the Books API package (including VPC, RDS &amp; Lambda REST API stacks) to AWS using AWS CDK</p>
+</blockquote>
+<pre><code class="lang-text">+-- src
+    +-- cloudformation
+    +-- config
+        +-- aws-params.json
+        +-- aws-secrets.json
+        +-- static.json
+    +-- modules
+        +-- books-api
+            +-- books-api.construct.ts
+            +-- books-api.construct.test.ts
+    +-- index.ts
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/index.ts" target="_blank">src/index.ts</a></p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;source-map-support/register&apos;</span>
+<span class="hljs-keyword">import</span> { App } from <span class="hljs-string">&apos;@aws-cdk/core&apos;</span>
+
+<span class="hljs-keyword">import</span> { BooksApi } from <span class="hljs-string">&apos;./modules/books-api&apos;</span>
+
+<span class="hljs-keyword">const</span> stage = process.env.STAGE || <span class="hljs-string">&apos;dev&apos;</span>
+<span class="hljs-keyword">const</span> appId = `${process.env.APP_NAME}-${process.env.PACKAGE_NAME}`
+
+<span class="hljs-comment">// App</span>
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> App()
+
+<span class="hljs-comment">// Lambda REST API, VPC &amp; RDS stacks</span>
+
+<span class="hljs-keyword">const</span> booksApi = <span class="hljs-keyword">new</span> BooksApi(app, appId, { stage })
+booksApi.createLambdaRestApi()
+booksApi.loadConfig()
+booksApi.createVPCStack()
+booksApi.createRDSStack()
+
+<span class="hljs-keyword">const</span> codeZipPath = `assets/${appId}-handlers.zip`
+<span class="hljs-keyword">const</span> codeFilename = `${appId}-handlers`
+booksApi.createLambdas(codeZipPath, codeFilename)
+
+app.synth()
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/config/aws-params.json" target="_blank">src/config/aws-params.json</a></p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;STAGE&quot;</span>: <span class="hljs-string">&quot;stage&quot;</span>,
+  <span class="hljs-string">&quot;LOG_LEVEL&quot;</span>: <span class="hljs-string">&quot;logLevel&quot;</span>,
+  <span class="hljs-string">&quot;PG_DATABASE&quot;</span>: <span class="hljs-string">&quot;postgres/db&quot;</span>,
+  <span class="hljs-string">&quot;PG_HOST&quot;</span>: <span class="hljs-string">&quot;postgres/host&quot;</span>,
+  <span class="hljs-string">&quot;PG_PORT&quot;</span>: <span class="hljs-string">&quot;postgres/port&quot;</span>,
+  <span class="hljs-string">&quot;PG_USER&quot;</span>: <span class="hljs-string">&quot;postgres/user&quot;</span>
+}
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/config/aws-params.json" target="_blank">src/config/aws-secrets.json</a></p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;PG_PASSWORD&quot;</span>: <span class="hljs-string">&quot;dbMasterPassword&quot;</span>
+}
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/config/static.json" target="_blank">src/config/static.json</a></p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;APP_ROOT_PATH&quot;</span>: <span class="hljs-string">&quot;/var/task&quot;</span>,
+  <span class="hljs-string">&quot;ENVIRONMENT&quot;</span>: <span class="hljs-string">&quot;aws&quot;</span>
+}
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/modules/books-api/books-api.construct.test.ts" target="_blank">src/modules/books-api/books-api.construct.test.ts</a></p>
+<p><a href="https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/modules/books-api/books-api.construct.ts" target="_blank">src/modules/books-api/books-api.construct.ts</a></p>
+<p><code>BooksApi.createVPCStack</code></p>
+<pre><code class="lang-typescript">createVPCStack(): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">this</span>.vpcStack = <span class="hljs-keyword">new</span> VPCStack(<span class="hljs-keyword">this</span>.scope, `${<span class="hljs-keyword">this</span>.id}-vpc-${<span class="hljs-keyword">this</span>.stage}`, { stage: <span class="hljs-keyword">this</span>.stage })
+  <span class="hljs-keyword">this</span>.vpcStack.createSecurityGroup({
+    name: LAMBDA_VPC_SECURITY_GROUP_NAME,
+    description: <span class="hljs-string">&apos;Lambda Security Group for app VPC&apos;</span>,
+  })
+  <span class="hljs-keyword">this</span>.vpcStack.createSecurityGroup({
+    name: RDS_VPC_SECURITY_GROUP_NAME,
+    description: <span class="hljs-string">&apos;RDS Security Group for app VPC&apos;</span>,
+    allowAllOutbound: <span class="hljs-literal">false</span>,
+  })
+  <span class="hljs-keyword">this</span>.vpcStack.addSecurityGroupIngressRule({
+    targetSecurityGroupName: RDS_VPC_SECURITY_GROUP_NAME,
+    sourceSecurityGroupName: LAMBDA_VPC_SECURITY_GROUP_NAME,
+    port: RDS_PORT,
+  })
+}
+</code></pre>
+<p><code>BooksApi.createRDSStack</code></p>
+<pre><code class="lang-typescript">  createRDSStack(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (isNil(<span class="hljs-keyword">this</span>.vpcStack)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(ERROR_MESSAGE_MISSING_AWS_CDK_STACK_VPC)
+    }
+
+    <span class="hljs-keyword">if</span> (pathSatisfies(isNil, [<span class="hljs-string">&apos;vpcStack&apos;</span>, <span class="hljs-string">&apos;securityGroups&apos;</span>, RDS_VPC_SECURITY_GROUP_NAME])(<span class="hljs-keyword">this</span>)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(ERROR_MESSAGE_MISSING_AWS_VPC_SECURITY_GROUP_RDS)
+    }
+
+    <span class="hljs-keyword">const</span> rdsSecurityGroup = path([<span class="hljs-string">&apos;vpcStack&apos;</span>, <span class="hljs-string">&apos;securityGroups&apos;</span>, RDS_VPC_SECURITY_GROUP_NAME])(<span class="hljs-keyword">this</span>) as SecurityGroup
+    <span class="hljs-keyword">this</span>.rdsStack = <span class="hljs-keyword">new</span> RDSStack(<span class="hljs-keyword">this</span>.scope, `${<span class="hljs-keyword">this</span>.id}-rds-${<span class="hljs-keyword">this</span>.stage}`, {
+      stage: <span class="hljs-keyword">this</span>.stage,
+      vpc: <span class="hljs-keyword">this</span>.vpcStack.vpc,
+      securityGroup: rdsSecurityGroup,
+    })
+
+    <span class="hljs-keyword">const</span> { PG_USER, PG_DATABASE, PG_PASSWORD, PG_PORT } = <span class="hljs-keyword">this</span>.configData
+    <span class="hljs-keyword">this</span>.rdsStack.createDatabase({ user: PG_USER, databaseName: PG_DATABASE, password: PG_PASSWORD, port: PG_PORT })
+  }
+</code></pre>
+<p><code>BooksApi.createLambdaRestApi</code></p>
+<pre><code class="lang-typescript">createLambdaRestApi(): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">this</span>.apiGatewayStack = <span class="hljs-keyword">new</span> ApiGatewayStack(<span class="hljs-keyword">this</span>.scope, `${<span class="hljs-keyword">this</span>.id}-lambda-${<span class="hljs-keyword">this</span>.stage}`, {
+    stage: <span class="hljs-keyword">this</span>.stage,
+  })
+}
+</code></pre>
+<p><code>BooksApi.loadConfig</code></p>
+<pre><code class="lang-typescript">  loadConfig(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (isNil(<span class="hljs-keyword">this</span>.apiGatewayStack)) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(ERROR_MESSAGE_MISSING_AWS_CDK_STACK_REST_API)
+    }
+
+    <span class="hljs-comment">// load AWS config</span>
+    <span class="hljs-keyword">const</span> awsConfig = <span class="hljs-keyword">new</span> AWSConfig(<span class="hljs-keyword">this</span>.apiGatewayStack, `${<span class="hljs-keyword">this</span>.id}-config-${<span class="hljs-keyword">this</span>.stage}`, {
+      stage: <span class="hljs-keyword">this</span>.stage,
+      appName: process.env.APP_NAME || <span class="hljs-string">&apos;&apos;</span>,
+      packageName: process.env.PACKAGE_NAME || <span class="hljs-string">&apos;&apos;</span>,
+      paramStoreKeys: PARAM_STORE_KEYS,
+      secretsManagerKeys: SECRETS_MANAGER_KEYS,
+      secretsArn: process.env.SECRETS_ARN || <span class="hljs-string">&apos;&apos;</span>,
+    })
+    <span class="hljs-keyword">const</span> configData = awsConfig.loadConfig()
+
+    <span class="hljs-comment">// derive additional config</span>
+    <span class="hljs-keyword">const</span> { PG_USER, PG_PASSWORD, PG_DATABASE, PG_PORT, PG_HOST } = configData
+    <span class="hljs-keyword">const</span> DATABASE_URL = buildDatabaseConnectionURL({
+      user: PG_USER,
+      databaseName: PG_DATABASE,
+      password: PG_PASSWORD,
+      port: PG_PORT,
+      host: PG_HOST,
+    })
+    <span class="hljs-keyword">const</span> derivedConfig = { DATABASE_URL }
+
+    <span class="hljs-comment">// merged configs</span>
+    <span class="hljs-keyword">this</span>.configData = mergeRight(mergeRight(configData, derivedConfig), STATIC_CONFIG)
+  }
+</code></pre>
+<p><code>BooksApi.createLambdas</code></p>
+<pre><code class="lang-typescript">  createLambdas(codeZipPath: string, codeFilename: string): void {
+    if (isNil(this.apiGatewayStack)) {
+      throw new Error(ERROR_MESSAGE_MISSING_AWS_CDK_STACK_REST_API)
+    }
+
+    if (isNil(this.configData)) {
+      throw new Error(ERROR_MESSAGE_MISSING_AWS_CONFIG)
+    }
+
+    const functionProps: Partial&lt;FunctionProps&gt; = this.lambdaVpcConfig
+    const functionNamePrefix = `${this.id}-${this.stage}`
+    const _buildLambdaFunction = buildLambdaFunction(
+      Code.fromAsset(codeZipPath),
+      codeFilename,
+      functionNamePrefix,
+      functionProps,
+    )
+
+    // ... build Lambdas
+    const getBooksLambda = _buildLambdaFunction(this.apiGatewayStack, &apos;getBooks&apos;, this.configData)
+    const getBookLambda = _buildLambdaFunction(this.apiGatewayStack, &apos;getBook&apos;, this.configData)
+    const createBookLambda = _buildLambdaFunction(this.apiGatewayStack, &apos;createBook&apos;, this.configData)
+    const updateBookLambda = _buildLambdaFunction(this.apiGatewayStack, &apos;updateBook&apos;, this.configData)
+
+    // ... attach Lambdas through resources and methods
+    const books = this.apiGatewayStack.addResource(&apos;books&apos;, &apos;GET&apos;, getBooksLambda, this.apiGatewayStack.api.root)
+    const book = this.apiGatewayStack.addResource(&apos;{id}&apos;, &apos;GET&apos;, getBookLambda, books)
+    this.apiGatewayStack.addMethod(&apos;POST&apos;, createBookLambda, books)
+    this.apiGatewayStack.addMethod(&apos;PATCH&apos;, updateBookLambda, book)
+  }
+</code></pre>
+<h2 id="usage">Usage</h2>
+<blockquote>
+<p>Check out docs on <a href="https://github.com/Nona-Creative/nona-playground/blob/iso__base/docs/common/aws-profile.md" target="_blank">AWS Profile</a> usage before you run the commands below.</p>
+</blockquote>
+<h3 id="setup-project">Setup Project</h3>
+<pre><code class="lang-bash">npm run init
+</code></pre>
+<h3 id="envs">Envs</h3>
+<h5 id="aws-secrets-manager">AWS Secrets Manager</h5>
+<p>Create the following secret:</p>
+<pre><code class="lang-json">dbMasterPassword: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">db</span> <span class="hljs-attribute">password</span>&gt;</span>
+</span></code></pre>
+<p>Then copy the resulting ARN and use it to populate <code>SECRETS_ARN</code> in local env <code>packages/books-api-aws-cdk/.env.dev</code></p>
+<h5 id="aws-paramstore">AWS Paramstore</h5>
+<p>Add the following params to AWS Paramstore:</p>
+<ul>
+<li><code>nona-playground/books-api/dev/stage</code></li>
+<li><code>nona-playground/books-api/dev/logLevel</code></li>
+<li><code>nona-playground/books-api/dev/postgres/db</code></li>
+<li><code>nona-playground/books-api/dev/postgres/host</code></li>
+<li><code>nona-playground/books-api/dev/postgres/port</code></li>
+<li><code>nona-playground/books-api/dev/postgres/user</code></li>
+</ul>
+<h3 id="deploy">Deploy</h3>
+<pre><code class="lang-bash">npm run books-api:aws:deploy dev
+</code></pre>
+<p>You can also remove (once you are done) with:</p>
+<pre><code class="lang-bash">npm run books-api:aws:destroy dev
+</code></pre>
+<h3 id="run-migrations">Run Migrations</h3>
+<p>configure the following vars in <code>packages/books-api/.env.dev</code> in order to run migrations:</p>
+<pre><code>POSTGRES_HOST
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+POSTGRES_PORT
+</code></pre><p>run migrations:</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> packages/books-api
+npm run migrate:dev up
+</code></pre>
+<p>You can also now populate the <code>books</code> table with some example data.</p>
+<h3 id="test">Test</h3>
+<pre><code class="lang-bash">http &lt;URL&gt;/books
+</code></pre>
+
+                                
+                                </section>
+                            
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev navigation-unique" aria-label="Previous page: NoNa Playground Showcase">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"REST API AWS Lambda RDS Postgres","level":"1.2","depth":1,"previous":{"title":"NoNa Playground Showcase","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{"maxIndexSize":1000000},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"REST_API_AWS_Lambda_RDS_Postgres.md","mtime":"2020-10-29T17:41:09.076Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-29T18:35:06.320Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+
+    </body>
+</html>
+
