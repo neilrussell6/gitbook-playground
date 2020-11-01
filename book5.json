@@ -11,15 +11,15 @@
   },
   "plugins": [
     "-lunr","-search","search-plus",
-    "mermaid-v8",
     "terminal",
-    "prism",
-    "-highlight",
+    "prism-ext",
+    "-highlight","prism-ASH", "custom-js-css",
     "collapsible-chapters",
     "insert-logo",
     "prism-themes",
     "github-edit",
-    "intopic-toc"
+    "intopic-toc",
+    "mermaid-v8"
   ],
   "pluginsConfig": {
     "terminal": {
@@ -45,16 +45,7 @@
       "label": "Contents"
     },
     "prism": {
-      "css": [
-        "prism-themes/themes/prism-a11y-dark.css"
-      ],
-      "lang": {
-        "flow": "typescript"
-      },
-      "ignore": [
-        "mermaid",
-        "eval-js"
-      ]
+      "theme": "prismjs/themes/prism-okaidia.css"
     }
   }
 }

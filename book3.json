@@ -1,0 +1,29 @@
+{
+  "plugins": [
+    "theme-hqbook"
+  ],
+  "variables": {
+    "themeHqbook":{
+      "nav":[
+        {
+          "url": "https://www.nona-creative.com",
+          "target": "_blank",
+          "name": "NoNa"
+        }
+      ]
+    }
+  },
+  "pluginsConfig": {
+    "theme-hqbook":{
+      "favicon": "./favicon-32x32.png",
+      "logo":"./logo.png",
+      "search-placeholder":"NoNa",
+      "copyButtons": true,
+      "copyLines": true,
+      "dragSplitter": true,
+      "hide-elements": [
+        ".summary .gitbook-link"
+      ]
+    }
+  }
+}

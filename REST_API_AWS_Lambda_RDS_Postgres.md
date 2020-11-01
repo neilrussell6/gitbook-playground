@@ -2,6 +2,26 @@
 
 > This demonstrates a full CRUD REST API implementation with Postgres/RDS, VPC and logging
 
+```
+**[terminal]
+**[prompt foo@joe]**[path ~]**[delimiter  $ ]**[command ./myscript]
+Normal output line. Nothing special here...
+But...
+You can add some colors. What about a warning message?
+**[warning [WARNING] The color depends on the theme. Could look normal too]
+What about an error message?
+**[error [ERROR] This is not the error you are looking for]
+```
+
+```mermaid
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
+```
+
+
 including:
 
 ##### REST API
@@ -118,7 +138,7 @@ This integration branch is composed of the following isolation branches:
 
 [src/index.ts](https://raw.githubusercontent.com/Nona-Creative/nona-playground/int__api__rest__crud__postgresql__pg_promise--aws__cdk__config--aws__cdk__api_gateway__lambda__code_asset__webpack--aws__cdk__rds--aws__cdk__vpc--logging__winston__cloudwatch/packages/books-api-aws-cdk/src/index.ts)
 
-```typescript
+```typescript{.data-line="2,4-5,10"}
 import 'source-map-support/register'
 import { App } from '@aws-cdk/core'
 

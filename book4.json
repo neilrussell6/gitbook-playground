@@ -11,10 +11,9 @@
   },
   "plugins": [
     "-lunr","-search","search-plus",
-    "mermaid-v8",
     "terminal",
-    "prism",
-    "-highlight",
+    "prism-ext",
+    "-highlight","prism-ASH", "custom-js-css",
     "collapsible-chapters",
     "insert-logo",
     "prism-themes",
@@ -25,7 +24,7 @@
     "terminal": {
       "copyButtons": true,
       "fade": false,
-      "style": "classic"
+      "style": "ubuntu"
     },
     "insert-logo": {
       "url": "/logo.png",
@@ -42,19 +41,10 @@
     },
     "collapsible-chapters": {},
     "intopic-toc": {
-      "label": "Contents"
+      "label": "In this article"
     },
     "prism": {
-      "css": [
-        "prism-themes/themes/prism-a11y-dark.css"
-      ],
-      "lang": {
-        "flow": "typescript"
-      },
-      "ignore": [
-        "mermaid",
-        "eval-js"
-      ]
+      "theme": "prismjs/themes/prism-okaidia.css"
     }
   }
 }
