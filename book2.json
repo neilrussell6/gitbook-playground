@@ -1,0 +1,13 @@
+{
+  "styles": {
+    "website": "styles/website.css"
+  },
+  "plugins": [
+    "terminull",
+    "collapsible-menu",
+    "video",
+    "youtube",
+    "anchors",
+    "codesnippet"
+  ]
+}

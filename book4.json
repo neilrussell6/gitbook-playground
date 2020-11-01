@@ -1,0 +1,50 @@
+{
+  "title": "Site Title",
+  "author": "Author Name",
+  "authorHomepage": "http://www.example.com",
+  "baiduStatisticsCode": "",
+  "description": "site description",
+  "language": "en-za",
+  "copyright": "All Rights Reserved",
+  "variables": {
+    "homePage": "/"
+  },
+  "plugins": [
+    "-lunr","-search","search-plus",
+    "terminal",
+    "prism-ext",
+    "-highlight","prism-ASH", "custom-js-css",
+    "collapsible-chapters",
+    "insert-logo",
+    "prism-themes",
+    "github-edit",
+    "intopic-toc"
+  ],
+  "pluginsConfig": {
+    "terminal": {
+      "copyButtons": true,
+      "fade": false,
+      "style": "ubuntu"
+    },
+    "insert-logo": {
+      "url": "/logo.png",
+      "style": "background: none;"
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    },
+    "github-edit": {
+      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "branch": "master"
+    },
+    "collapsible-chapters": {},
+    "intopic-toc": {
+      "label": "In this article"
+    },
+    "prism": {
+      "theme": "prismjs/themes/prism-okaidia.css"
+    }
+  }
+}

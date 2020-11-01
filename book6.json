@@ -1,0 +1,54 @@
+{
+  "title": "Site Title",
+  "author": "Author Name",
+  "authorHomepage": "http://www.example.com",
+  "baiduStatisticsCode": "",
+  "description": "site description",
+  "language": "en-za",
+  "copyright": "All Rights Reserved",
+  "variables": {
+    "homePage": "/"
+  },
+  "plugins": [
+    "-lunr","-search","search-plus",
+    "mermaid-v8",
+    "terminal",
+    "prism-ext",
+    "-highlight","prism-ASH", "custom-js-css",
+    "collapsible-chapters",
+    "insert-logo",
+    "prism-themes",
+    "github-edit",
+    "intopic-toc"
+  ],
+  "pluginsConfig": {
+    "terminal": {
+      "copyButtons": true,
+      "fade": false,
+      "style": "classic"
+    },
+    "insert-logo": {
+      "url": "/logo.png",
+      "style": "background: none;"
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    },
+    "github-edit": {
+      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "branch": "master"
+    },
+    "collapsible-chapters": {},
+    "intopic-toc": {
+      "label": "Contents"
+    },
+    "prism": {
+      "css": [
+        "prism-themes/themes/prism-atom-light.css"
+      ],
+      "plugins": ["line-highlight", ["src/prism-plugins/prism-ext/custom.css", "src/prism-plugins/prism-ext/custom.js"]]
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "plugins": [
+"prism",
+"image-captions",
+"headings",
+"copy-code",
+"algolia", "lunr",
+"ga",
+"github", "github-buttons",
+"atoc", "toc",
+"codeblock-filename", "code-tabs",
+
+
+
+    "theme-code",
+    "splitter",
+    "prism",
+    "folding-chapters",
+    "-sharing"
+  ]
+}
+
+
+{
+  "title": "Site Title",
+  "author": "Author Name",
+  "authorHomepage": "http://www.example.com",
+  "baiduStatisticsCode": "",
+  "description": "site description",
+  "language": "zh-hans",
+  "copyright": "All Rights Reserved",
+  "variables": {
+    "homePage": "/"
+  },
+  "plugins": [
+    "prism", "-highlight", "prism-themes",
+    "image-captions",
+    "algolia", "lunr",
+    "github", "github-edit", "github-buttons",
+    "atoc", "toc",
+    "codeblock-filename"
+  ],
+  "pluginsConfig": {
+    "algolia": {
+      "index": "algolia-index-name",
+      "applicationID": "algolia-application-id",
+      "publicKey": "algolia-search-only-api-key",
+      "freeAccount": "true"
+    },
+    "github": {
+      "url": "https://github.com/neilrussell6/gitbook-playground"
+    },
+    "github-buttons": {
+      "buttons": [{
+        "user": "neilrussell6",
+        "repo": "JavaScript-Plugin-Architecture",
+        "type": "star",
+        "size": "large"
+      }, {
+        "user": "neilrussell6",
+        "type": "follow",
+        "width": "230",
+        "count": false
+      }]
+    },
+    "github-edit": {
+      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "branch": "master"
+    },
+    "atoc": {
+      "addClass": true,
+      "className": "atoc"
+    },
+    "prism": {
+      "css": [
+        "prismjs/themes/prism-okaidia.css",
+        "prism-themes/themes/prism-duotone-dark.css"
+      ],
+      "lang": {
+        "flow": "typescript"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+{
+  "title": "Site Title",
+  "author": "Author Name",
+  "authorHomepage": "http://www.example.com",
+  "baiduStatisticsCode": "",
+  "description": "site description",
+  "language": "en-za",
+  "copyright": "All Rights Reserved",
+  "variables": {
+    "homePage": "/"
+  },
+  "plugins": [
+    "insert-logo",
+    "prism",
+    "-highlight",
+    "prism-themes",
+    "github-edit",
+    "collapsible-chapters",
+    "page-toc"
+  ],
+  "pluginsConfig": {
+    "insert-logo": {
+      "url": "https://avatars2.githubusercontent.com/u/2647939?s=200&v=4",
+      "style": "background: none;"
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    },
+    "github-edit": {
+      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "branch": "master"
+    },
+    "collapsible-chapters": {},
+    "page-toc": {
+      "selector": ".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4",
+      "position": "before-first",
+      "showByDefault": true
+    },
+    "prism": {
+      "css": [
+        "prismjs/themes/prism-okaidia.css"
+      ],
+      "lang": {
+        "flow": "typescript"
+      }
+    }
+  }
+}
+
+
+
+{
+  "title": "Site Title",
+  "author": "Author Name",
+  "authorHomepage": "http://www.example.com",
+  "baiduStatisticsCode": "",
+  "description": "site description",
+  "language": "en-za",
+  "copyright": "All Rights Reserved",
+  "variables": {
+    "homePage": "/"
+  },
+  "plugins": [
+    "prism",
+    "collapsible-chapters",
+    "insert-logo",
+    "-highlight",
+    "prism-themes",
+    "github-edit",
+    "intopic-toc"
+  ],
+  "pluginsConfig": {
+    "insert-logo": {
+      "url": "/logo.png",
+      "style": "background: none;"
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    },
+    "github-edit": {
+      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "branch": "master"
+    },
+    "collapsible-chapters": {},
+    "intopic-toc": {
+      "label": "In this article"
+    },
+    "prism": {
+      "css": [
+        "prismjs/themes/prism-okaidia.css"
+      ],
+      "lang": {
+        "flow": "typescript"
+      }
+    }
+  }
+}
