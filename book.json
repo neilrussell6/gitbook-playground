@@ -37,7 +37,7 @@
       "size": 2
     },
     "github-edit": {
-      "repo": "https://github.com/neilrussell6/gitbook-playground",
+      "repo": "neilrussell6/gitbook-playground",
       "branch": "master"
     },
     "collapsible-chapters": {},
