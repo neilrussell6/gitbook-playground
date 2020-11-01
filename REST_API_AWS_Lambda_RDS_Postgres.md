@@ -80,7 +80,7 @@ This integration branch is composed of the following isolation branches:
 
 ### `books-api-aws-cdk` package
 
-##### summary
+##### summary 123
 
 -   creates VPC, RDS and Lambda REST API stacks
     using their respective packages
