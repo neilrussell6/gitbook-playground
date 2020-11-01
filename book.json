@@ -28,7 +28,7 @@
       "style": "classic"
     },
     "insert-logo": {
-      "url": "/logo.png",
+      "url": "https://github.com/neilrussell6/gitbook-playground/blob/master/logo.png?raw=true",
       "style": "background: none;"
     },
     "fontsettings": {
